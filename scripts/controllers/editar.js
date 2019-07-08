@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name pruebaTecnicaApp.controller:RegistroCtrl
+ * @name pruebaTecnicaApp.controller:EditarCtrl
  * @description
- * # RegistroCtrl
+ * # EditarCtrl
  * Controller of the pruebaTecnicaApp
  */
 angular.module('pruebaTecnicaApp')
-.controller('RegistroCtrl', function ($log, $scope, $routeParams, $location, $http, $route, $mdSidenav, pruebaHighTechRequest) {
+.controller('EditarCtrl', function ($log, $scope, $routeParams, $location, $http, $route, $mdSidenav, pruebaHighTechRequest) {
   this.awesomeThings = [
     'HTML5 Boilerplate',
     'AngularJS',
@@ -17,11 +17,21 @@ angular.module('pruebaTecnicaApp')
 
   var self = this;
 
-  //SE OBTIENE EL NUMERO DE REGISTROS ALMACENADOS
-  pruebaHighTechRequest.get('com.entities.cardatos', '/').then(function(response) {
-    console.log(response.data.length);
-    self.KPersona = response.data.length + 1; //cantidad de registros almacenados
+  self.kpersona = $routeParams.KPersona; //Recibe el valor del id del Usuario por medio de la URL
+  self.datos = {};
+
+  //OBTENEMOS LOS DATOS DEL USUARIO
+  pruebaHighTechRequest.get('com.entities.cardatos', '/' + self.kpersona).then(function(response) {
+    //console.log(response);
+    self.datos.KPersona = response.data.KPersona;
+    self.datos.NNombre = response.data.NNombre;
+    self.datos.NApellido = response.data.NApellido;
+    self.datos.OCorreo = response.data.OCorreo;
+    self.datos.KCodtarjeta = response.data.KCodtarjeta;
+    self.datos.NNombreTarjeta = response.data.NNombreTarjeta;
   });
+
+  console.log(self.datos);
 
   self.guardar = function(){
     console.log($('#text_usuario').val());
@@ -35,11 +45,11 @@ angular.module('pruebaTecnicaApp')
                   "OCorreo" : $('#text_correo').val()
                 };
 
-    pruebaHighTechRequest.post('com.entities.cardatos', self.datosPOST).then(function(request) {
-      console.log(request.status);
+    pruebaHighTechRequest.put('com.entities.cardatos', self.datosPOST, self.kpersona).then(function(request) {
+      console.log(request);
       if (request.status == 204) {
         Swal.fire({
-            title: 'Registros almacenados con éxito!',
+            title: 'Registros actualizados con éxito!',
             type: 'success',
             html: '',
             showCloseButton: false,
@@ -47,7 +57,7 @@ angular.module('pruebaTecnicaApp')
             confirmButtonText: '<i class="fa fa-thumbs-up"></i> Aceptar',
             allowOutsideClick: false
         }).then(function () {
-            window.location.href = "#/";
+            window.location.href = "#/consulta";
         });
       }
     });
@@ -56,7 +66,7 @@ angular.module('pruebaTecnicaApp')
 
   self.refMenu = function(){
     console.log("Ir a Menu...");
-    window.location.href = "#/";
+    window.location.href = "#/consulta";
   }
 
 });

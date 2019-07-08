@@ -1,31 +1,45 @@
-<div class="panel panel-default">
-  <div class="row">
-      <div class="col-xs-12 col-md-4">
-          <label for="text_titulo">TÍTULO</label>
-          <input type="text" class="form-control" id="text_titulo" name="text_titulo" placeholder="Título de notificación" >
-      </div>
-      <div class="col-xs-12 col-md-4">
-          <label for="text_mensaje">MENSAJE</label>
-          <input type="text" class="form-control" id="text_mensaje" name="text_mensaje" placeholder="Cuerpo del mensaje" >
-      </div>
-      <div class="col-xs-12 col-md-4">
-          <label for="text_mensaje">MENSAJE</label>
-          <input type="text" class="form-control" id="text_mensaje" name="text_mensaje" placeholder="Cuerpo del mensaje" >
-      </div>
-      <div class="col-xs-12 col-md-4">
-          <label for="text_mensaje">MENSAJE</label>
-          <input type="text" class="form-control" id="text_mensaje" name="text_mensaje" placeholder="Cuerpo del mensaje" >
-      </div>
-      <div class="col-xs-12 col-md-4">
-          <label for="text_mensaje">MENSAJE</label>
-          <input type="text" class="form-control" id="text_mensaje" name="text_mensaje" placeholder="Cuerpo del mensaje" >
-      </div>
-      <div class="col-xs-12 col-md-4" style="text-align: left;">
-          <label></label>
-          <button type="submit" class="btn btn-success btn-lg boton" id="btn_guardar" style="width: 100%;">
-              ENVIAR
-              <span class="glyphicon glyphicon-send"></span>
-          </button>
-      </div>
+<form name="formadipro" ng-submit="registro.guardar()" method="post">
+  <div class="alert" style="background-color: #e3f2fd;" role="alert">
+    <b>REGISTRO DE USUARIO</b>
   </div>
-</div>
+  <div class="container-fluid">
+    <hr>
+    <div class="row" style="padding: 30px;">
+      <div class="col-xs-12 col-md-4">
+          <label for="text_usuario"><b>USUARIO</b></label>
+          <input type="text" class="form-control" id="text_usuario" name="text_usuario" placeholder="Usuario" value="{{registro.KPersona}}" required>
+      </div>
+      <div class="col-xs-12 col-md-4">
+          <label for="text_nombre"><b>NOMBRE</b></label>
+          <input type="text" class="form-control" id="text_nombre" name="text_nombre" placeholder="Nombre de la persona" required>
+      </div>
+      <div class="col-xs-12 col-md-4">
+          <label for="text_apellido"><b>APELLIDO</b></label>
+          <input type="text" class="form-control" id="text_apellido" name="text_apellido" placeholder="Apellido de la persona" required>
+      </div>
+      <div class="col-xs-12 col-md-4">
+          <label for="text_correo"><b>CORREO ELECTRÓNICO</b></label>
+          <input type="text" class="form-control" id="text_correo" name="text_correo" placeholder="Correo electrónico" required>
+      </div>
+      <div class="col-xs-12 col-md-4">
+          <label for="text_notarjeta"><b>No TARJETA CRÉDITO</b></label>
+          <input type="text" class="form-control" id="text_notarjeta" name="text_notarjeta" placeholder="# Tarjeta de crédito" required>
+      </div>
+      <div class="col-xs-12 col-md-4">
+          <label for="text_tarjeta"><b>NOMBRE TARJETA CRÉDITO</b></label>
+          <input type="text" class="form-control" id="text_tarjeta" name="text_tarjeta" placeholder="Nombre tarjeta crédito" required>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row" style="padding: 30px;">
+      <div class="col-xs-12 col-md-6" style="text-align: right;">
+        <button type="submit" class="btn btn-primary" style="width:30%;">Registrar</button>
+      </div>
+      <div class="col-xs-12 col-md-6" style="text-align: left;">
+        <button type="button" class="btn btn-primary" ng-click="registro.refMenu()" style="width:30%;">Volver</button>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,45 @@
+<form name="formadipro" ng-submit="editar.guardar()" method="post">
+  <div class="alert" style="background-color: #e3f2fd;" role="alert">
+    <b>EDITAR USUARIO</b>
+  </div>
+  <div class="container-fluid">
+    <hr>
+    <div class="row" style="padding: 30px;">
+      <div class="col-xs-12 col-md-4">
+          <label for="text_usuario"><b>USUARIO</b></label>
+          <input type="text" class="form-control" id="text_usuario" name="text_usuario" value="{{editar.datos.KPersona}}" readonly>
+      </div>
+      <div class="col-xs-12 col-md-4">
+          <label for="text_nombre"><b>NOMBRE</b></label>
+          <input type="text" class="form-control" id="text_nombre" name="text_nombre" value="{{editar.datos.NNombre}}" required>
+      </div>
+      <div class="col-xs-12 col-md-4">
+          <label for="text_apellido"><b>APELLIDO</b></label>
+          <input type="text" class="form-control" id="text_apellido" name="text_apellido" value="{{editar.datos.NApellido}}" required>
+      </div>
+      <div class="col-xs-12 col-md-4">
+          <label for="text_correo"><b>CORREO ELECTRÓNICO</b></label>
+          <input type="text" class="form-control" id="text_correo" name="text_correo" value="{{editar.datos.OCorreo}}" required>
+      </div>
+      <div class="col-xs-12 col-md-4">
+          <label for="text_notarjeta"><b>No TARJETA CRÉDITO</b></label>
+          <input type="text" class="form-control" id="text_notarjeta" name="text_notarjeta" value="{{editar.datos.KCodtarjeta}}" required>
+      </div>
+      <div class="col-xs-12 col-md-4">
+          <label for="text_tarjeta"><b>NOMBRE TARJETA CRÉDITO</b></label>
+          <input type="text" class="form-control" id="text_tarjeta" name="text_tarjeta" value="{{editar.datos.NNombreTarjeta}}" required>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row" style="padding: 30px;">
+      <div class="col-xs-12 col-md-6" style="text-align: right;">
+        <button type="submit" class="btn btn-primary" style="width:30%;">Guardar</button>
+      </div>
+      <div class="col-xs-12 col-md-6" style="text-align: left;">
+        <button type="button" class="btn btn-primary" ng-click="editar.refMenu()" style="width:30%;">Volver</button>
+      </div>
+    </div>
+  </div>
+</form>

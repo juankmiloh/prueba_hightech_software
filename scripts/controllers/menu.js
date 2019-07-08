@@ -2,9 +2,9 @@
 
 /**
  * @ngdoc function
- * @name pruebaTecnicaApp.controller:MainCtrl
+ * @name pruebaTecnicaApp.controller:menuCtrl
  * @description
- * # MainCtrl
+ * # menuCtrl
  * Controller of the pruebaTecnicaApp
  */
 angular.module('pruebaTecnicaApp')

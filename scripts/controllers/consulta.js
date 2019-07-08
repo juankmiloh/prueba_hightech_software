@@ -4,7 +4,7 @@
  * @ngdoc function
  * @name pruebaTecnicaApp.controller:ConsultaCtrl
  * @description
- * # MainCtrl
+ * # ConsultaCtrl
  * Controller of the pruebaTecnicaApp
  */
 angular.module('pruebaTecnicaApp')
@@ -17,36 +17,42 @@ angular.module('pruebaTecnicaApp')
 
   var self = this;
 
-  self.refConsulta = function(){
-    console.log("Consultar...");
-    window.location.href = "#/consulta";
-  }
-
-  self.refRegistro = function(){
-    console.log("Redireccionando...");
-    window.location.href = "#/registro";
-  }
-
-  pruebaHighTechRequest.get('com.entities.carpersona', '/').then(function(response_persona) {
-    console.log(response_persona);
-    self.KPersona = response_persona.data.KPersona;
+  //OBTENEMOS TODOS LOS USUARIOS
+  pruebaHighTechRequest.get('com.entities.cardatos', '/').then(function(response) {
+    console.log(response);
+    self.datos = response.data;
   });
 
-  pruebaHighTechRequest.get('com.entities.carpersona', '/1').then(function(response_persona) {
-    //console.log(response_persona);
-    self.KPersona = response_persona.data.KPersona;
-    //console.log(self.KPersona);
-    pruebaHighTechRequest.get('com.entities.cartarjetacredito', '/').then(function(response_tarjeta) {
-      console.log(response_tarjeta);
-      self.KPersonaTarjeta = response_tarjeta.data[0].KPersona.KPersona;
+  self.refMenu = function(){
+    console.log("Ir a Menu...");
+    window.location.href = "#/";
+  }
 
-      for (var i in response_tarjeta.data) {
-        if (self.KPersona == response_tarjeta.data[i].KPersona.KPersona) {
-          console.log("cod_persona -> " + response_tarjeta.data[i].KPersona.KPersona);
-        }
+  self.editar = function(KPersona){
+    console.log(KPersona);
+    window.location.href = "#/editar";
+  }
+
+  self.eliminar = function(KPersona){
+    self.KPersona = KPersona;
+    console.log(self.KPersona);
+    sessionStorage.setItem('delete', KPersona);
+    pruebaHighTechRequest.delete('com.entities.cardatos', sessionStorage.getItem('delete')).then(function(request) {
+      console.log(request);
+      if (request.status == 204) {
+        Swal.fire({
+            title: 'Registro eliminado con éxito!',
+            type: 'success',
+            html: '',
+            showCloseButton: false,
+            showCancelButton: false,
+            confirmButtonText: '<i class="fa fa-thumbs-up"></i> Aceptar',
+            allowOutsideClick: false
+        }).then(function () {
+            location.reload();
+        });
       }
-
     });
-  });
+  }
 
 });

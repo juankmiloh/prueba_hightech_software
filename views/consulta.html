@@ -1,8 +1,39 @@
-<nav class="navbar fixed-top navbar-light" style="background-color: #e3f2fd;">
-  <a class="navbar-brand" href="#">
-    <img src="images/logohightech.png" width="30" height="30" alt="">
-    <b>PRUEBA TÉCNICA SOFTWARE</b>
-  </a>
-</nav>
-
-<br><br><br>
+<div class="container-fluid">
+  <div class="alert" style="background-color: #e3f2fd;" role="alert">
+    <b>LISTA DE PERSONAS</b>
+  </div>
+  <div class="row" style="">
+    <div class="col-xs-12 col-md-12" style="padding: 40px;">
+      <table class="table">
+        <thead>
+          <tr style="text-align:center;">
+            <th scope="col">#</th>
+            <th scope="col">NOMBRE</th>
+            <th scope="col">APELLIDO</th>
+            <th scope="col">CORREO ELECTRÓNICO</th>
+            <th scope="col">No TARJETA CRÉDITO</th>
+            <th scope="col">NOMBRE TARJETA CRÉDITO</th>
+            <th scope="col"></th>
+            <!-- <th scope="col"></th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="dato in consulta.datos" style="text-align:center;">
+            <th scope="row">{{dato.KPersona}}</th>
+            <td>{{dato.NNombre}}</td>
+            <td>{{dato.NApellido}}</td>
+            <td>{{dato.OCorreo}}</td>
+            <td>{{dato.KCodtarjeta}}</td>
+            <td>{{dato.NNombreTarjeta}}</td>
+            <td><a href="#/editar/{{dato.KPersona}}">Editar</a></td>
+            <!-- <td><a href="" ng-click="consulta.eliminar(dato.KPersona)">Eliminar</a></td> -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-xs-12 col-md-12" style="text-align: center; padding: 20px;">
+      <hr>
+      <button type="button" class="btn btn-primary" ng-click="consulta.refMenu()" style="width:15%;">Volver</button>
+    </div>
+  </div>
+</div>
